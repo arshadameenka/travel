@@ -6,7 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\Models\UserType;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -43,5 +43,8 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function userTypes(){
+        return $this->belongsTo(UserType::class,'user_type_id','id');
     }
 }
