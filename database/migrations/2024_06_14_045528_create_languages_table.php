@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('packages', function (Blueprint $table) {
+        Schema::create('languages', function (Blueprint $table) {
             $table->id()->autoIncrement()->primary();
-            $table->string('slug')->unique();
-            $table->smallInteger('days')->default(1);
-            $table->smallInteger('nights')->default(0);
-            $table->smallInteger('people')->default(1);
-            $table->enum('featured',['Y','N'])->default('N');
-            $table->softDeletes();
+            $table->string('language',length:20);
+            $table->string('code',length:5);
+            $table->string('direction',length:5);
+            $table->string('icon');
+            $table->enum('status',['Active','Deleted','Inactive']);
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('packages');
+        Schema::dropIfExists('languages');
     }
 };
